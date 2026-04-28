@@ -2,23 +2,44 @@
   "name": "smarte-mcp",
   "version": "1.0.0",
   "description": "SMARTe MCP server — B2B data enrichment and prospecting for Claude and MCP-compatible AI agents",
+  "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build:server": "tsc -p tsconfig.json",
+    "build:app": "vite build",
+    "build": "npm run build:app && npm run build:server",
     "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts",
+    "start:stdio": "node dist/index.js --stdio",
+    "start:http": "node dist/index.js --http",
+    "dev:app": "vite",
+    "dev:server": "tsx watch src/index.ts --stdio",
+    "dev": "concurrently \"npm run dev:app\" \"npm run dev:server\"",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist dist-app"
   },
   "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^1.7.1",
     "@modelcontextprotocol/sdk": "^1.0.0",
+    "cors": "^2.8.6",
     "dotenv": "^16.4.5",
+    "express": "^5.2.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "@types/node": "^20.14.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^9.2.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.2"
+    "tsx": "^4.21.0",
+    "typescript": "^5.5.2",
+    "vite": "^8.0.10",
+    "vite-plugin-singlefile": "^2.3.3"
   },
   "engines": {
     "node": ">=18.0.0"

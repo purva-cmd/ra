@@ -271,10 +271,9 @@ export class SmarteClient {
   ): Promise<DiscoverContactsResponse> {
     // Apply defaults
     const payload: DiscoverContactsRequest = {
-      limit: 10,
+      limit: Math.min(params.limit ?? 10, 100),
       offset: 0,
       ...params,
-      limit: Math.min(params.limit ?? 10, 100),
     };
 
     const raw = await this.request<unknown>("POST", PATHS.discoverContacts, payload, opts);
@@ -302,10 +301,9 @@ export class SmarteClient {
     opts?: RequestOptions
   ): Promise<DiscoverCompaniesResponse> {
     const payload: DiscoverCompaniesRequest = {
-      limit: 10,
+      limit: Math.min(params.limit ?? 10, 100),
       offset: 0,
       ...params,
-      limit: Math.min(params.limit ?? 10, 100),
     };
 
     const raw = await this.request<unknown>("POST", PATHS.discoverCompanies, payload, opts);

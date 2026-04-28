@@ -1,0 +1,369 @@
+/* SMARTe Sign-in MCP App — matches app.smarte.pro/signin */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --brand-50:  #f0f4ff;
+  --brand-100: #dce8ff;
+  --brand-200: #bfd4ff;
+  --brand-300: #93b7ff;
+  --brand-500: #3b5bff;
+  --brand-600: #1f33f5;
+  --brand-700: #1824e0;
+  --brand-800: #1a21b5;
+
+  --bg:         #f5f7ff;
+  --surface:    #ffffff;
+  --border:     #e2e8f0;
+  --text:       #0f172a;
+  --text-muted: #64748b;
+  --input-bg:   #ffffff;
+  --input-border: #cbd5e1;
+  --input-focus: var(--brand-600);
+  --error-bg:   #fff1f2;
+  --error-border: #fca5a5;
+  --error-text: #dc2626;
+  --success-bg: #f0fdf4;
+  --success-border: #86efac;
+  --success-text: #16a34a;
+  --radius: 10px;
+  --shadow: 0 4px 24px rgba(31,51,245,0.08), 0 1px 4px rgba(0,0,0,0.06);
+}
+
+[data-theme="dark"] {
+  --bg:          #0f1117;
+  --surface:     #1a1d2e;
+  --border:      #2d3050;
+  --text:        #f1f5f9;
+  --text-muted:  #94a3b8;
+  --input-bg:    #1e2238;
+  --input-border: #3a3f5c;
+  --error-bg:    #2d1515;
+  --error-border: #7f1d1d;
+  --error-text:  #fca5a5;
+  --success-bg:  #0f2d1a;
+  --success-border: #166534;
+  --success-text: #86efac;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+html, body { height: 100%; background: var(--bg); font-family: "Inter", system-ui, -apple-system, sans-serif; }
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 36px 32px;
+}
+
+/* ── Logo / header ── */
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  background: var(--brand-600);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-mark svg { width: 20px; height: 20px; }
+
+.logo-wordmark {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+.logo-wordmark span { color: var(--brand-600); }
+
+.tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* ── Form ── */
+.form { display: flex; flex-direction: column; gap: 18px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+
+.field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.field-row {
+  position: relative;
+}
+
+.field input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-family: inherit;
+}
+
+.field input::placeholder { color: var(--text-muted); }
+
+.field input:focus {
+  border-color: var(--brand-600);
+  box-shadow: 0 0 0 3px rgba(31,51,245,0.12);
+}
+
+.field input.error-input {
+  border-color: var(--error-text);
+}
+
+.eye-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 2px;
+  display: flex;
+  align-items: center;
+}
+.eye-btn:hover { color: var(--text); }
+
+input[type="password"] { padding-right: 42px; }
+input.has-toggle { padding-right: 42px; }
+
+.forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -8px;
+}
+
+.link {
+  font-size: 13px;
+  color: var(--brand-600);
+  text-decoration: none;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+.link:hover { text-decoration: underline; }
+
+/* ── Submit button ── */
+.btn-primary {
+  width: 100%;
+  padding: 11px;
+  background: var(--brand-600);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-primary:hover:not(:disabled) { background: var(--brand-700); }
+.btn-primary:active:not(:disabled) { background: var(--brand-800); transform: scale(0.99); }
+.btn-primary:disabled { opacity: 0.65; cursor: not-allowed; }
+
+/* ── Spinner ── */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Alert ── */
+.alert {
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  border: 1px solid;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.alert.error   { background: var(--error-bg);   border-color: var(--error-border);   color: var(--error-text); }
+.alert.success { background: var(--success-bg); border-color: var(--success-border); color: var(--success-text); }
+.alert svg { flex-shrink: 0; margin-top: 1px; }
+
+/* ── API key display ── */
+.api-key-box {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.api-key-value {
+  flex: 1;
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+  font-size: 13px;
+  color: var(--text);
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+.copy-btn:hover { background: var(--brand-50); color: var(--brand-700); }
+.copy-btn.copied { color: var(--success-text); }
+
+.setup-steps {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-top: 12px;
+}
+.setup-steps code {
+  font-family: monospace;
+  background: var(--bg);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--brand-700);
+}
+
+/* ── Open in browser button ── */
+.btn-secondary {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: var(--brand-600);
+  border: 1.5px solid var(--brand-600);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-secondary:hover { background: var(--brand-50); }
+
+/* ── Divider ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.divider::before, .divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Footer ── */
+.card-footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── Success state ── */
+.success-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--success-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.success-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.success-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 20px;
+}

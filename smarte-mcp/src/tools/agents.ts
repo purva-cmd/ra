@@ -137,13 +137,13 @@ export async function handleAgentTool(
   try {
     switch (toolName) {
       case "get_buying_group": {
-        const params = args as BuyingGroupRequest;
+        const params = args as unknown as BuyingGroupRequest;
         const result = await client.getBuyingGroup(params);
         return ok(result);
       }
 
       case "get_account_signals": {
-        const params = args as AccountSignalsRequest;
+        const params = args as unknown as AccountSignalsRequest;
         const result = await client.getAccountSignals(params);
         return ok(result);
       }
